@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app='ShoppingListCheckOff'>
+<head>
+    <meta charset="utf-8">
+    <script src="../angular.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <!--<style> body { font-size: 1.2em; }</style>-->
+    <title>Shopping Lists</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <h2>Shopping list</h2>
+        </nav>
+        <div class="row">
+            <div class="col-sm-6" ng-controller='ToBuyController as toBuyCtrl'>
+                <!-- List of items to buy-->
+                <div>
+                    <h3>To Buy</h3>
+                    <h3 class="alert alert-success"  ng-if="toBuyCtrl.showItems().length==0">Everything is bought!</h3>
+                    <table class="table" ng-repeat="item in toBuyCtrl.showItems();">
+                        <tbody>
+                        <tr>
+                            <th scope="row">{{$index +1}}</th>
+                            <td>Buy {{item.quantity}} {{item.type}} of {{item.name}}</td>
+                            <td><button type="button" class="btn btn-outline-dark" ng-click="toBuyCtrl.buyItem(item.name);">Bought</button></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-sm-6" ng-controller='AlreadyBoughtController as boughtCtrl'>
+                <!-- List of items to buy-->
+                <div>
+                    <h3>Already Bought</h3>
+                    <h4 class="alert alert-warning" ng-if="boughtCtrl.showItems().length==0">Nothing bought yet!</h4>
+                    <table class="table" ng-repeat="item in boughtCtrl.showItems();">
+                        <tbody>
+                        <tr>
+                            <th scope="row">{{$index +1}}</th>
+                            <td>Bought {{item.quantity}} {{item.type}} of {{item.name}}</td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
